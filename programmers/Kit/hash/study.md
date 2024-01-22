@@ -51,3 +51,15 @@ myMap.forEach((value, key) => {
 [mdn web docs_Set]("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set")
 
 > Set objects are collections of values. A value in the set may only occur once; it is unique in the set's collection.
+
+## 3.String.prototype.startsWith()
+
+[mdn web docs\_](<"3.String.prototype.startsWith()">)
+
+`startsWith()` 메서드는 어떤 문자열이 특정 문자로 시작하는지 확인하여 결과를 `true`혹은 `false`로 반환함
+
+첫 번째 매개변수 `searchString`
+문자열의 시작 지점에서 탐색할 문자열. 정규표현식이 올 수 없습니다.
+
+두 번째 매개변수 `position Optional`
+searchString을 탐색할 위치. 기본값은 0.
