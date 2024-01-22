@@ -45,3 +45,9 @@ myMap.forEach((value, key) => {
 ```
 
 다른 내용 생략!
+
+## 2.Set
+
+[mdn web docs_Set]("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set")
+
+> Set objects are collections of values. A value in the set may only occur once; it is unique in the set's collection.
