@@ -78,3 +78,93 @@ function solution(sizes) {
 
   return answer;
 }
+
+//  두 번째 내 코드
+//  가로 길이와 세로 길의 max 값을 찾아 maxW, maxH
+//  (1) maxW, maxH의 sizes[i]가 같을 때 -> maxW * maxH
+//  (2) maxW, maxH의 sizes[i]가 다를 때
+//  maxW, maxH 중 큰 값 sizes[i][0] 이나 sizes[i][1]으로 고정
+//  작은 값이 maxW이면 나머지 [w, h]값들을 [h,w]로 바꿈(단, w가 h보다 작을 때)
+//  작은 값이 maxH이면 나머지 [w, h]값들은 [w, h]로 바꿈 (단, h가 w보다 작을 때)
+
+function solution(sizes) {
+  let answer = 0;
+  let ws = [];
+  let hs = [];
+  let wMax = 0;
+  let hMax = 0;
+  let wMaxIndex = 0;
+  let hMaxIndex = 0;
+
+  for (let i = 0; i < sizes.length; i++) {
+    ws.push(sizes[i][0]);
+    hs.push(sizes[i][1]);
+  }
+  wMax = Math.max(...ws);
+  hMax = Math.max(...hs);
+  wMaxIndex = ws.indexOf(wMax);
+  hMaxIndex = hs.indexOf(hMax);
+
+  if (wMaxIndex === hMaxIndex) {
+    answer = wMax * hMax;
+  } else {
+    if (wMax > hMax) {
+      let hs = [];
+      let newHMax = 0;
+      for (let i = 0; i < sizes.length; i++) {
+        if (sizes[i][0] < sizes[i][1]) {
+          hs.push(sizes[i][0]);
+        } else {
+          hs.push(sizes[i][1]);
+        }
+      }
+      newHMax = Math.max(...hs);
+      answer = wMax * newHMax;
+    } else if (wMax < hMax) {
+      let ws = [];
+      let newWMax = 0;
+      for (let i = 0; i < sizes.length; i++) {
+        if (sizes[i][1] < sizes[i][0]) {
+          ws.push(sizes[i][1]);
+        } else {
+          ws.push(sizes[i][0]);
+        }
+      }
+      newWMax = Math.max(...ws);
+      answer = newWMax * hMax;
+    }
+  }
+
+  return answer;
+}
+
+//  블로그 다른 사람의 코드
+//  velog-coderH
+//  [프로그래머스] 최소직사각형 - JavaScript
+/*
+function solution(sizes) {
+    let arr = sizes.map(size => size[0] > size[1] ? [size[0], size[1]] : [size[1], size[0]]);
+
+    const width = [];
+    const height = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        width.push(arr[i][0]);
+        height.push(arr[i][1]);
+    }
+
+    return Math.max(...width) * Math.max(...height);
+}
+*/
+//  배열 접근과 배열 원소 수정 법을 배웠다.
+
+//  문제 예제 입력값과 출력값 설명에서
+//  "2번째의 명함[직사각형]을 돌리니
+//  가로 -> 세로로 돌리니
+//  지갑의 크기를 줄였다"
+//  블로그 작성자는 그것을 보고
+//  가로와 세로의 구분은 중요한 것이 아님을 알았다.
+//  기준점을 각 원소의 긴 값을 가로로 짧은 값을 세로로 분류했다.
+//  문제를 잘 읽고 생각해야 하는구나!
+//  내 코드는 내가 봐도 복잡하고 이상했다.
+//  생각의 전환이 알고리즘을 푸는데에 도움이 된다는 것을 알았다.
