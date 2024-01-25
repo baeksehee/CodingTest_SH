@@ -107,3 +107,28 @@ console.log(array3);
 ```js
 [0, 1, 2, 3, 4].reduce((prev, curr) => prev + curr);
 ```
+
+## x만큼 간격이 있는 n개의 숫자
+
+```js
+//  다른 사람의 풀이
+
+function solution(x, n) {
+  return Array(n) //  길이가 n인 배열 생성
+    .fill(x) // x 즉 배수를 담아서 map에서 v 배수 값과 인덱스 + 1 이라는 수를 곱함 편리하게!
+    .map((v, i) => (i + 1) * v);
+}
+```
+
+### `Array.prototype.fill()`
+
+[mdn web docs]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/fill")
+
+배열의 인덱스 범위 내에 있는 모든 요소르 정적 값으로 변경함
+그리고 수정된 배열을 반환함
+
+```js
+const array1 = [1, 2, 3, 4];
+console.log(array1.fill(6));
+// Expected output: Array [6, 6, 6, 6]
+```
