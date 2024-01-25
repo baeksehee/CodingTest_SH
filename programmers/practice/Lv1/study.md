@@ -132,3 +132,9 @@ const array1 = [1, 2, 3, 4];
 console.log(array1.fill(6));
 // Expected output: Array [6, 6, 6, 6]
 ```
+
+## 문자열 내 p와 y의 개수
+
+mdn
+
+### `String.prototype.toUpperCase()`, `String.prototype.toLowerCase()`
