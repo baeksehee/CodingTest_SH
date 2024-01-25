@@ -95,3 +95,15 @@ const array3 = array1.concat(array2);
 console.log(array3);
 // Expected output: Array ["a", "b", "c", "d", "e", "f"]
 ```
+
+## 평균 구하기
+
+### `Array.prototype.reduce()`
+
+[mdn web docs]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce")
+
+배열의 각 요소에 대해 주어진 리듀서(reducer)함수를 실행하고, 하나의 결과값을 반환함
+
+```js
+[0, 1, 2, 3, 4].reduce((prev, curr) => prev + curr);
+```
