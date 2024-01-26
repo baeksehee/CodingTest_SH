@@ -159,3 +159,22 @@ do {
 
 [mdn web docs_Math.floor()]("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor")
 The Math.floor() static method always rounds down and returns the largest integer less than or equal to a given number.
+
+## 두 정수 사이의 합
+
+### `기본값 매개변수`
+
+기본값 함수 매개변수 (default function parameter)를 사용하면 값이 전달되지 않거나 `undefined`인 경우 명명된 매개변수를 기본값으로 초기화할 수 있습니다.
+
+```js
+function multiply(a, b = 1) {
+  return a * b;
+}
+
+console.log(multiply(5));
+//  Expected output: 5
+```
+
+### `Math.min()`
+
+The Math.min() static method returns the smallest of the numbers given as input parameters, or Infinity if there are no parameters.
