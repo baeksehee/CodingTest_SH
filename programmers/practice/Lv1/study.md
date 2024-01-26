@@ -219,3 +219,15 @@ const animals = ["ant", "bison", "camel", "duck", "elephant"];
 
 console.log(animals.slice(-2)); // Array ["duck", "elephant"]
 ```
+
+## 가운데 글자 가져오기
+
+### `String.prototype.substr()` - 이제는 거의 사용할 수 없는 메서드인 것으로 보임
+
+[mdn web docs_String.prototype.substr()]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/substr")
+
+문자열에서 특정 위치에서 시작하여 특정 문자 수 만큼의 문자들을 반환합니다.
+
+### `Math.ceil()` - `Math.floor()`랑 비교됨
+
+주어진 숫자보다 크거나 같은 숫자 중 가장 작은 숫자를 integer 로 반환합니다.
