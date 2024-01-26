@@ -205,3 +205,17 @@ let filterArray = filterArr.filter((e) => e % x === 0);
 
 console.log(filterArray);
 ```
+
+## 핸드폰 번호 가리기
+
+### `Array.prototype.slice()`
+
+[mdn web docs_Array.prototype.slice(]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/slice")
+
+어떤 배열의 `begin`부터 `end`까지(`end` 미포함)에 대해 얕은 복사본을 새로운 배열 객체로 반환합니다. 원본 배열은 바뀌지 않습니다.
+
+```js
+const animals = ["ant", "bison", "camel", "duck", "elephant"];
+
+console.log(animals.slice(-2)); // Array ["duck", "elephant"]
+```
