@@ -231,3 +231,18 @@ console.log(animals.slice(-2)); // Array ["duck", "elephant"]
 ### `Math.ceil()` - `Math.floor()`랑 비교됨
 
 주어진 숫자보다 크거나 같은 숫자 중 가장 작은 숫자를 integer 로 반환합니다.
+
+## 약수의 개수와 덧셈
+
+### `Math.sqrt()`
+
+[mdn web docs_Math.sqrt()]("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt")
+
+```js
+Math.sqrt(2); // 1.414213562373095
+Math.sqrt(9); // 3
+```
+
+### `Number.isInteger()`
+
+주어진 값이 정수인지 판별합니다.
