@@ -138,3 +138,24 @@ console.log(array1.fill(6));
 mdn
 
 ### `String.prototype.toUpperCase()`, `String.prototype.toLowerCase()`
+
+## 하샤드 수
+
+### `do...while`
+
+[mdn web docs_do...while]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/do...while")
+
+```js
+do {
+  statement:
+} while (condition);
+
+```
+
+- 구문: 테스트 조거니 참일 때마다 한 번이상 실행되는 구문임
+- 조건식: 루프가 실행될 때마다 평가되는 식 (조건식이 참으로 평가되었을 때)
+
+### `Math.floor()`
+
+[mdn web docs_Math.floor()]("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor")
+The Math.floor() static method always rounds down and returns the largest integer less than or equal to a given number.
