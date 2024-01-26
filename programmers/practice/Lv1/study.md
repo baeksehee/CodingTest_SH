@@ -178,3 +178,30 @@ console.log(multiply(5));
 ### `Math.min()`
 
 The Math.min() static method returns the smallest of the numbers given as input parameters, or Infinity if there are no parameters.
+
+## 나누어 떨어지는 숫자 배열
+
+### `Array.prototype.filter()`
+
+`filter()`메서드는 주어진 배열의 일부에 대한 얕은 복사본을 생성하고, 주어진 배열에서 제공된 함수에 의해 구현된 테스트를 통과한 요소로만 필터링 합니다.
+
+map과 filter을 사용할 때 filter가 속도가 좋음
+
+```js
+let x = 3;
+let arr = [1, 2, 3, 4, 5, 6, 7];
+let answer = [];
+let filterArr = [1, 2, 3, 4, 5, 6, 7];
+
+arr.map((e) => {
+  if (e % x === 0) {
+    answer.push(e);
+  }
+});
+
+console.log(answer);
+
+let filterArray = filterArr.filter((e) => e % x === 0);
+
+console.log(filterArray);
+```
