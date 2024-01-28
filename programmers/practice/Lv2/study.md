@@ -22,3 +22,36 @@ console.log(str.substring(2)); // "zilla"
 ### `String.prototype.toUpperCase()`
 
 ### `String.prototype.toLowerCase()`
+
+## 이진 변환 반복하기
+
+### `Number.prototype.toString()`
+
+[mdn web docs]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/toString")
+
+특정한 Number 객체를 나타내는 문자열을 반환합니다.
+
+```js
+var x = 6;
+console.log(x.toString(2)); // 110
+```
+
+### `String.prototype.match()` - 추가 공부 필요함
+
+[mdn web docs_String.prototype.match()]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/match")
+
+문자열이 정규식과 매치되는 부분을 검색합니다.
+
+```js
+str.match(regexp);
+```
+
+- regexp: 정규식 객체임
+
+### `String.prototype.replace()`
+
+[mde web docs_String.prototype.replace()]("https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace")
+
+```js
+replace(pattern, replacement);
+```
