@@ -55,3 +55,47 @@ str.match(regexp);
 ```js
 replace(pattern, replacement);
 ```
+
+## 괄호 회전하기
+
+### continue
+
+[mdn web docs_continue]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/continue")
+
+`continue`문은 현재 또는 레이블이 지정된 루프의 현재 반복에서 명령문의 실행을 종료하고 반복문의 처음으로 돌아가여 루프문의 다음 코드를 실행합니다.
+
+```js
+let text = "";
+
+for (let i = 0; i < 10; i++) {
+  if (i === 3) {
+    continue;
+  }
+  text = text + i;
+}
+
+console.log(text); //    012456789
+```
+
+### break
+
+`break` 문은 현재 반복문, `switch`문 또는 `lable`문을 종료하고, 그 다음 문으로 프로그램 제어를 넘깁니다.
+
+```js
+//  나만 사랑하는 코드
+let i = ["나", "는", "나", "를", "사", "랑", "해", "너", "도"];
+
+let result = "";
+
+let leng = 0;
+
+while (leng < 10) {
+  if (leng === 7) {
+    break;
+  }
+  result += i[leng];
+  leng++;
+}
+
+console.log(result);
+```
