@@ -34,3 +34,34 @@ function solution(s) {
 
   return answer;
 }
+
+//  velog-[프로그래머스] 괄호 회전하기 - javascript
+//  김지원 코드
+//  보고 혼자 작성
+
+function solution(s) {
+  if (s.length % 2 === 1) return 0; // 이런 세부적인 조건도 알아서 만족해야 함
+  let answer = 0;
+  let ok = true;
+  let stack = [];
+
+  for (let i = 0; i < s.length; i++) {
+    let nowS = s.slice(i) + s.slice(0, i); //  이 방법 신기하넹
+    ok = true; // false로 변경되었을 때 다시 true로 할당
+
+    for (let n of nowS) {
+      if (n == "(" || n == "{" || n == "[") stack.push(n);
+      else {
+        let left = stack.pop();
+        if (n === ")" && left === "(") continue;
+        if (n === "}" && left === "{") continue;
+        if (n === "]" && left === "[") continue;
+        ok = false;
+        break;
+      }
+    }
+
+    if (ok) answer++;
+  }
+  return answer;
+}
