@@ -61,3 +61,53 @@ function solution(msg) {
 
   return answer;
 }
+
+//  다른 사람 풀이 보고 연습
+//[프로그래머스] [3차] 압축 - JavaScript
+//Dec 08, 2022 LeeJam
+
+function solution(msg) {
+  let words = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+  let word = "";
+  let answer = [];
+
+  for (let i = 0; i < msg; i++) {
+    word += msg[i];
+
+    if (!words.includes(word)) {
+      words.push(word);
+      answer.push(words.indexOf(word.slice(0, -1)) + 1);
+      word = msg[i];
+    }
+  }
+
+  if (word) answer.push(words.indexOf(word) + 1);
+  return answer;
+}
