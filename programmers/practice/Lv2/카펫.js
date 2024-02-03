@@ -58,3 +58,26 @@ function solution(brown, yellow) {
 //  [프로그래머스 JavaScript] 카펫
 //  velog - Do YEON KIM
 //  나도 그림 분석은 제대로 했는데 활용을 못했다. .
+function solution(brown, yellow) {
+  var answer = [];
+  for (var y = 3; y <= (brown + yellow) / y; y++) {
+    var x = Math.floor((brown + yellow) / y);
+    if ((x - 2) * (y - 2) === yellow) {
+      break;
+    }
+  }
+
+  return [x, y];
+}
+
+//  복습 풀이 ⭕
+//  but 실행 시간이 초과 직전
+//  for문 두 번 사용해서
+function solution(brown, yellow) {
+  for (let i = 1; i <= yellow; i++) {
+    for (let j = 1; j <= yellow; j++) {
+      if (i * j === yellow && i >= j && i * 2 + j * 2 + 4 === brown)
+        return [i + 2, j + 2];
+    }
+  }
+}
