@@ -56,3 +56,58 @@ function solution(elements) {
   answer = Array.from(set).length - 1;
   return answer;
 }
+
+//  복습코드 ⭕
+//  20분
+
+function solution(elements) {
+  let answer = 0;
+  let leng = elements.length;
+  let circleArray = elements.concat(elements);
+  let results = [];
+
+  for (let i = 1; i <= leng; i++) {
+    // 부분 수열 배열의 길이
+
+    for (let j = 0; j < leng; j++) {
+      //  적용시킬 index
+      let result = 0;
+      let el = circleArray.slice(j, j + i);
+      el.map((e) => (result += e));
+      results.push(result);
+    }
+  }
+
+  let set = new Set(results);
+  answer = Array.from(set).length;
+
+  return answer;
+}
+
+//  프로그래머스 - 다른 사람의 풀이
+//  for문 기준 적용 인덱스 -> 배열의 길이
+function solution(elements) {
+  let answer = 0;
+  let leng = elements.length;
+  let circleArray = elements.concat(elements);
+  let results = [];
+
+  for (let i = 0; i < leng; i++) {
+    // index 위치
+    let result = 0;
+    for (let j = 1; j <= leng; j++) {
+      //  적용시킬 배열의 길이
+      result += circleArray[i + j];
+      // let el = circleArray.slice(j, j + i);
+      // el.map((e) => (result += e));
+      results.push(result);
+    }
+  }
+
+  console.log(results);
+
+  let set = new Set(results);
+  answer = Array.from(set).length;
+
+  return answer;
+}
