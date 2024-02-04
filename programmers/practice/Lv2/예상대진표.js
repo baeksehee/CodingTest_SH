@@ -33,3 +33,40 @@ function solution(n, a, b) {
 //  나도 Math.ceil() 사용했는데
 //  풀이만 짧았어도.
 //  문제 입력값 활용을 잘 생각해보자.
+
+function solution(n, a, b) {
+  let answer = 0;
+
+  while (a !== b) {
+    a = Math.ceil(a / 2);
+    b = Math.ceil(b / 2);
+    answer++;
+  }
+
+  return answer;
+}
+
+// 복습 코드 ⭕
+// 14분
+
+function solution(n, a, b) {
+  let answer = 0;
+
+  while (a != b) {
+    a = Math.ceil(a / 2);
+    b = Math.ceil(b / 2);
+
+    answer++;
+  }
+
+  return answer;
+}
+
+//  1 2 3 4 5 6 7 8
+//  1 1 2 2 3 3 4 4
+//  1 1 1 1 2 2 2 2
+//  1 1 1 1 1 1 1 1
+
+//  1 2 3 4
+//  1 1 2 2
+//  1 1 1 1
