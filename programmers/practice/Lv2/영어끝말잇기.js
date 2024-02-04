@@ -54,3 +54,49 @@ function solution(n, words) {
 // 마지막 글자를 pop을 활용해서 끄낸 점 아주 훌륭함
 // 중복인지 확인하는 코드를 indexOf()는 아마 제일 첫 번째에 해당하는 인덱스를 반환하기 때문에
 // 그걸 기준으로 중복인지 아닌지 확인한 점 너무 멋짐
+function solution(n, words) {
+  let answer = [0, 0];
+
+  for (let i = 0; i < words.length; i++) {
+    let word = words[i];
+    let p = (i % n) + 1;
+    let turn = Math.ceil((i + 1) / n);
+
+    if (i > 0) {
+      let last = words[i - 1].split("").pop();
+
+      if (i > words.indexOf(word) || words[i][0] !== last) {
+        answer = [p, turn];
+        break;
+      }
+    }
+  }
+
+  return answer;
+}
+
+//  복습코드 ⭕
+//  시간: 30분
+
+function solution(n, words) {
+  let answer = [0, 0];
+  let stack = [];
+  for (let i = 0; i < words.length; i++) {
+    if (i === 0 && !stack.includes(words[i]) && words[i].length > 1) {
+      stack.push(words[i]);
+      continue;
+    }
+    if (
+      stack.includes(words[i]) ||
+      words[i].length <= 1 ||
+      stack[stack.length - 1].at(-1) != words[i][0]
+    ) {
+      let position = i + 1;
+      console.log(i + 1, n);
+      answer = [position % n === 0 ? n : position % n, Math.ceil(position / n)];
+      break;
+    } else stack.push(words[i]);
+  }
+
+  return answer;
+}

@@ -36,3 +36,21 @@ function solution(people, limit) {
 //  정답 코드를 봤더니
 //  sort가 중요하고 재미있더라.
 //  나는 문제를 보고 입력값을 어떻게 하면 잘 활용할지를 모르는 듯
+function solution(people, limit) {
+  let answer = 0;
+  let sortArr = people.sort((a, b) => a - b);
+
+  let left = 0;
+  let right = sortArr.length - 1;
+
+  while (left <= right) {
+    if (sortArr[left] + sortArr[right] <= limit) {
+      left++;
+    }
+
+    answer++;
+    right--;
+  }
+
+  return answer;
+}

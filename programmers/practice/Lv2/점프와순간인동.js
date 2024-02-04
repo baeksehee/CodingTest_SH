@@ -7,3 +7,17 @@
 //  다른 블로그 내용
 //  입력값 N으로 어떻게 최소 건전지를 사용해서 만들지 했는데
 //  입력값 N을 역으로 0으로 만드는 전략으로 풀었다
+function solution(n) {
+  let ans = 0;
+
+  while (n > 0) {
+    if (n % 2 === 0) {
+      n = n / 2;
+    } else {
+      n -= 1;
+      ans++;
+    }
+  }
+
+  return ans;
+}
