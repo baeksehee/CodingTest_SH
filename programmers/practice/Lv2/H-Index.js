@@ -38,12 +38,37 @@ function solution(citations) {
 //  문제 이해가 나는 안 된다.
 //  문제에 n편이 나는 당연히 citations 배열의 길이인 줄!
 
-// function solution(citations) {
-//   citations.sort((a, b) => b - a);
-//   for (let i = 0; i < citations.length; i++) {
-//     if (i >= citations[i]) {
-//       return i;
-//     }
-//   }
-//   return citations.length;
-// }
+function solution(citations) {
+  citations.sort((a, b) => b - a);
+  for (let i = 0; i < citations.length; i++) {
+    if (i >= citations[i]) {
+      // i는 논문 수, citaions[i]는 인용된 수
+      return i;
+    }
+  }
+  return citations.length;
+}
+
+// 복습 코드 ❌
+// 24분
+
+function solution(citations) {
+  let answer = 0;
+  citations.sort((a, b) => b - a);
+
+  for (let i = citations.length; i > 0; i--) {
+    let num = citations[i];
+    let count = 0;
+
+    for (let j = 0; j < citations.length; j++) {
+      if (num <= citations[j]) count++;
+      else break;
+    }
+
+    if (num >= count && citations.length - count <= num) {
+      return num;
+    }
+  }
+
+  return answer;
+}

@@ -46,3 +46,30 @@ function solution(cacheSize, cities) {
   }
   return answer;
 }
+
+//  복습 코드
+//  지난번 코드 참고 후 고침 ⭕
+function solution(cacheSize, cities) {
+  let answer = 0;
+
+  let cache = [];
+
+  if (cacheSize === 0) return cities.length * 5;
+  if (cities.length === cacheSize) return cities.length;
+
+  for (let i = 0; i < cities.length; i++) {
+    let city = cities[i].toUpperCase();
+
+    if (cache.includes(city)) {
+      let index = cache.indexOf(city);
+      cache.splice(index, 1);
+      answer++;
+    } else {
+      if (cache.length === cacheSize) cache.shift();
+      answer = answer + 5;
+    }
+    cache.push(city);
+  }
+
+  return answer;
+}
