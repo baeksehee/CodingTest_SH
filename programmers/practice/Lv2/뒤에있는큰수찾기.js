@@ -42,3 +42,20 @@ function solution(numbers) {
   }
   return answer;
 }
+
+//  [Programmers] 뒤에 있는 큰 수 찾기 - JavaScript
+//  velog-Joosi_Cool
+function solution(numbers) {
+  let answer = new Array(numbers.length).fill(-1);
+  let stack = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    while (stack.length && numbers[stack.at(-1)] < numbers[i]) {
+      answer[stack.pop()] = numbers[i]; // index 값으로 pop() 사용시 배열이 바뀔 줄이야
+    }
+    stack.push(i);
+  }
+
+  console.log(answer, stack);
+  return answer;
+}
