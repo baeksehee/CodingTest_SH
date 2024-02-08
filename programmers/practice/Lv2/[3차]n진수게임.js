@@ -10,14 +10,16 @@ function solution(n, t, m, p) {
 
   while (answer.length < t * m) {
     let plusNum = num.toString(n);
-    if (plusNum === 10) answer += "A";
+
     //주석처리 코드 필요 없는 코드를 적었네
+    // if (plusNum === 10) answer += "A";
     // else if (plusNum === 11) answer += "B";
     // else if (plusNum === 12) answer += "C";
     // else if (plusNum === 13) answer += "D";
     // else if (plusNum === 14) answer += "E";
     // else if (plusNum === 15) answer += "F";
-    else answer += plusNum;
+    // else answer += plusNum;
+    answer += plusNum;
     num++;
   }
 
