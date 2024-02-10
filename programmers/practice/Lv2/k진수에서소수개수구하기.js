@@ -41,3 +41,26 @@ function solution(n, k) {
 
   return answer;
 }
+
+//  복습코드
+//  정확성: ❌
+//  이 코드는 정답 코드
+//  정답이지 않았을 때 for문에 조건문이랑 정답을 변수값 중 하나 ++  이런 거 제대로 안 함
+function solution(n, k) {
+  let answer = 0;
+  let minus = 0;
+  let nums = n
+    .toString(k)
+    .split("0")
+    .filter((e) => e.length >= 1 && e !== "1");
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = 2; j <= Math.sqrt(nums[i]); j++) {
+      //  for문에 break, if문 등 올바르게 사용하지 않으면 실패임
+      if (nums[i] % j === 0) {
+        minus++;
+        break;
+      }
+    }
+  }
+  return nums.length - minus;
+}

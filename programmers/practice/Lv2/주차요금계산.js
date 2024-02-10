@@ -72,3 +72,58 @@ function solution(fees, records) {
 
   return answer;
 }
+
+//  참고
+//  프로그래머스 - 다른 사람의 풀이
+//  time 구하는 식이랑
+//  object를 for of 문처럼 하나씩 돌리는for (let 변수 of Object.entries(object))가 신기했음
+function solution(fees, records) {
+  let answer = [];
+
+  let partTimeCars = {};
+
+  records.forEach((record) => {
+    let [time, id, status] = record.split(" ");
+    time = Number(time.split(":")[0] * 60) + Number(time.split(":")[1]);
+    if (!partTimeCars[id]) partTimeCars[id] = 0;
+    //  이 식을 생각하는 것이 천재야
+    if (status === "IN") partTimeCars[id] += 1439 - time;
+    if (status === "OUT") partTimeCars[id] -= 1439 - time;
+  });
+
+  //     console.log(partTimeCars);
+
+  for (let [car, time] of Object.entries(partTimeCars)) {
+    // fees[0] : 기본시간, fees[1]: 기본 요금, fees[2]: 단위 시간, fees[3]: 단위 요금
+    //  기본요금 + Math.ceil((사용시간 - 기본시간)/단위 시간)*단위요금
+    if (time <= fees[0]) time = fees[1];
+    else {
+      time = fees[1] + Math.ceil((time - fees[0]) / fees[2]) * fees[3];
+    }
+    answer.push([car, time]);
+  }
+
+  // console.log(answer);
+
+  return answer.sort((a, b) => a[0] - b[0]).map((t) => t[1]); // map 활용
+}
+
+// 다른 사람의 풀이 설명 가지고 옴
+// 차량번호 오름차순으로 청구요금 담아 배열로 리턴
+
+// 청구요금 구하기
+// 기본요금 fee[1] + ( 주차시간 - 기본시간fee[0] ) / fee[2] * fee[3]
+
+// 기본시간이내 : 기본요금
+// 출차 시간 max = 23:59
+// 분 단위는 올림
+
+// 주차시간 구하기
+// records.forEach(r => r.split(' ')
+
+// log 객체에 {차번호: 시간} 저장
+// IN 이면 + (24시간(분) - 입차시간)
+// OUT이면 -(1430 - 출차시간)
+// 24시간 = 1440분
+
+// ex) 05:34 (05 * 60) + 34 = 334

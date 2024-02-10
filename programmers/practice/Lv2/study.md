@@ -121,3 +121,83 @@ console.log(result);
 (13, d)
 (14, e)
 (15, f)
+
+## 주차 요금 계산
+
+### `Object.entries()`
+
+[mdn web docs1_Object.entries()]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/entries")
+
+`Object.entries()`메서드는 `for...in`와 같은 순서로 주어진 객체 자체의 enumerable 속성 `[key, vaule]` 쌍의 배열을 반환합니다.
+
+### `Array.prototype.forEach()`
+
+[mdn web docs_Array.prototype.forEach()]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach")
+
+`Array` 인스턴스의 `forEach()` 메서드는 각 배열 요소에 대해 제공된 함수를 한 번씩 실행합니다.
+
+```js
+const array1 = ["a", "b", "c"];
+
+array1.forEach((element) => console.log(element));
+
+//  element: 배열에서 처리 중인 현재 요소
+//  index: 배열에서 처리 중인 현재 요소의 인덱스
+```
+
+## 롤 케이크 자르기
+
+### Map
+
+[mdn web docs_Map]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Map")
+
+- `Map` 객체는 키-값 쌍과 키의 원래 삽입 순서를 기억함
+- `Map`에서의 키는 오직 단 하나만 존재함
+- `for...of`루프는 각 반복에 대해 `[key, value]`로 이루어진 멤버가 2개인 배열을 반환
+- `Map`의 명세는 "평균적으로 집합 내 요소의 수에 따라 하위 선형인 접근 시간을 제공하는"맵을 구현해야 한다고 기술되어 있음
+- 복잡성이 O(N)보다 더 나은 경우 내부적으로 해시 테이블(O(1)룩업) 데이터 구조로 표현될 수 있음
+- object의 키는 string 또는 Symbol이어야 함
+
+#### 객체 속성 설정하기
+
+```js
+// 올바른 방법 ❌
+const wromgMap = new Map();
+wrongMap["bla"] = "blaa";
+worngMap.has("bla"); // false
+```
+
+```js
+//  올바른 방⭕
+const contatcts = new Map();
+contacts.set("jJessie", { phone: "213-555-1234", address: "123 N 1st Ave" });
+contacts.has("Jessie"); // true
+contacts.get("Hilary"); // undefined
+contacts.get("Jessie"); // {phone: "213-555-1234", address: "123 N 1st Ave"}
+contacts.delete("Raymond"); // false
+contacts.delete("Jessie"); // true
+console.log(cantacts.size); // 1
+```
+
+#### Map 사용하기
+
+```js
+const myMap = new Map();
+myMap.set(0, "zero");
+myMap.set(1, "one");
+
+for (const [key, value] of myMap) {
+  console.log(`${key} = ${value}`);
+}
+
+//  of 뒤에
+//  myMap.keys(); key만
+//  myMap.vaules(); values만
+//  myMap.entries(); myMap 이랑 똑같음 keys-values
+```
+
+```js
+myMap.forEach((value, key) => {
+  console.log(`${key} = ${value}`);
+});
+```
