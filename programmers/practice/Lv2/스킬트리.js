@@ -37,3 +37,30 @@ function solution(skill, skill_trees) {
   }
   return skill_trees.length - minus;
 }
+
+//  30분 넘어서 성공한 문제 공부 안 했음! 아 맞다!
+//  지금 생각해보니깐! 이제부터 열심히 하겠습니다!
+
+//  참고
+//  [프로그래머스-JS] level.2 스킬 트리
+//  2023. 6. 28. 10:580
+//  알고리즘/프로그래머스 - JS
+//  tistory
+
+function solution(skill, skill_trees) {
+  let answer = skill_trees.length;
+
+  for (let i = 0; i < skill_trees.length; i++) {
+    let skillStack = [...skill];
+    let skillTree = skill_trees[i];
+    for (let j = 0; j < skillTree.length; j++) {
+      if (!skill.includes(skillTree[j])) continue;
+      if (skillStack.shift() !== skillTree[j]) {
+        // pop()이랑 헷갈림요
+        answer -= 1;
+        break;
+      }
+    }
+  }
+  return answer;
+}
