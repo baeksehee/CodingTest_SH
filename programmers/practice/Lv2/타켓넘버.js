@@ -60,3 +60,28 @@ https: function solution(numbers, target) {
 
   return answer;
 }
+
+//  복습 코드
+//  사실 전날에 봄!
+//  제한사항 보면 범위가 크지 않음 dfs 사용 가능
+//  아니면 dp 고려해보라고 들었음
+function solution(numbers, target) {
+  let answer = 0;
+  let leng = numbers.length;
+
+  function dfs(value, count) {
+    if (count > leng) {
+      if (target === value) {
+        answer++;
+      }
+      return;
+    }
+    // dfs(value + numbers[count - 1], count++) 라고 해서 틀렸음
+    dfs(value + numbers[count - 1], count + 1);
+    dfs(value - numbers[count - 1], count + 1);
+  }
+
+  dfs(0, 1);
+
+  return answer;
+}

@@ -201,3 +201,30 @@ myMap.forEach((value, key) => {
   console.log(`${key} = ${value}`);
 });
 ```
+
+## [3차] 파일명 정렬
+
+### `String.prototype.localeCompare()`
+
+[mdn web docs_String.prototype.localeCompare()]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare")
+
+`localeCompare()` 메서드는 참조 문자열이 정렬 순으로 지정된 문자열 앞 혹은 뒤에 오는지 또는 동일한 문자열인지 나타내는 수치를 반환함
+
+```js
+referencesStr.localeCompare(compareString);
+```
+
+- compareString 전에 referencesStr이 오면 음수: 즉, referenceStr가 순서가 먼저인게 맞을 때
+- compareString 뒤에 referencesStr이 오면 양수: 순서가 반대일 때
+- 동등한 경우 0을 반환: 순서가 같았을 때
+
+#### `sort()로 문자열 순서 정렬하기`
+
+[mdn web docs_sort]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort")
+
+```js
+let alphabet = ["a", "c", "b"];
+alphabet.sort((a, b) => a.localeCompare(b));
+//  양수일 때 b를 a보다 낮은 인덱스로 소트
+console.log(alphabet);
+```
