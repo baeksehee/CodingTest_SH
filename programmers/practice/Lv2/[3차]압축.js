@@ -111,3 +111,59 @@ function solution(msg) {
   if (word) answer.push(words.indexOf(word) + 1);
   return answer;
 }
+
+//  복습코드
+//  ❌
+//  while에서 안 나감 ㅎㅎ
+
+function solution(msg) {
+  let answer = [];
+  let words = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+
+  while (msg.length > 0) {
+    let now = msg[0];
+    let index = 1;
+    let include = true;
+
+    while (include && index <= msg.length) {
+      if (words.includes(msg.slice(0, index + 1))) {
+        now = msg.slice(0, index + 1);
+        index = index + 1;
+      } else {
+        answer.push(words.indexOf(now) + 1);
+        words.push(msg.slice(0, index + 1));
+        msg = msg.slice(index);
+        include = false;
+      }
+    }
+  }
+
+  return answer;
+}
