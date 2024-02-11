@@ -71,3 +71,8 @@ function solution(word) {
 
   return answer;
 }
+
+//  복습 코드
+//  생략
+//  틀린 이유 dfs라는 걸 알았는데 적지 못함
+//  규칙 찾아서 하는 거 하려고 했는 reduce 사용법 까먹음
