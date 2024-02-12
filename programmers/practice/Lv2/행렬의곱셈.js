@@ -65,3 +65,24 @@ function solution(arr1, arr2) {
 
   return answer;
 }
+
+//  복습 코드
+//  ⭕
+function solution(arr1, arr2) {
+  let answer = [];
+  let col = arr2[0].length;
+  let row = arr1.length;
+  let rowR = arr1[0].length;
+
+  for (let i = 0; i < row; i++) {
+    answer.push([]);
+    for (let j = 0; j < col; j++) {
+      let a = 0;
+      for (let k = 0; k < rowR; k++) {
+        a += arr1[i][k] * arr2[k][j];
+      }
+      answer[i].push(a);
+    }
+  }
+  return answer;
+}
