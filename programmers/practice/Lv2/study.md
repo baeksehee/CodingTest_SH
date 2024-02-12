@@ -228,3 +228,21 @@ alphabet.sort((a, b) => a.localeCompare(b));
 //  양수일 때 b를 a보다 낮은 인덱스로 소트
 console.log(alphabet);
 ```
+
+## 가장 큰수
+
+### sort
+
+```js
+let a = "12";
+let b = "1";
+
+let c = "3";
+let d = "30";
+let e = "34";
+
+let ex = [c, d, e].sort((a, b) => b + a - (a + b));
+let hi = [c, d, e].sort((a, b) => a - b);
+console.log(ex); // 	[ '34', '3', '30' ]
+console.log(hi); //  [ '3', '30', '34' ]
+```
