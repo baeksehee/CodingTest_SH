@@ -65,3 +65,32 @@ function solution(s) {
   }
   return answer;
 }
+
+//  내 복습 코드
+//  ❌
+//  테스트 코드만 맞음
+function solution(s) {
+  let answer = 0;
+  if (s.length % 2 !== 0) return 0;
+
+  let count = s.length;
+
+  for (let i = 0; i < count; i++) {
+    let stack = [];
+    s = s.slice(1) + s[0];
+
+    for (let j = 0; j < count; j++) {
+      if (s[j] === "(" || s[j] === "[" || s[j] === "{") {
+        stack.push(s[j]);
+        continue;
+      } else {
+        if (s[j] === ")" && !stack.includes("(")) break;
+        if (s[j] === "}" && !stack.includes("{")) break;
+        if (s[j] === "]" && !stack.includes("[")) break;
+      }
+      if (j === count - 1) answer++;
+    }
+  }
+
+  return answer;
+}
