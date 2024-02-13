@@ -45,3 +45,18 @@ function solution(n, left, right) {
 
   return answer;
 }
+
+//  복습코드
+//  시간복잡도가 너무 커서 그런 듯
+//  ❌
+function solution(n, left, right) {
+  let answer = [];
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      answer.push(Math.max(i + 1, j + 1));
+    }
+  }
+
+  return answer.slice(left, right + 1);
+}
