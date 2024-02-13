@@ -75,3 +75,43 @@ function solution(maps) {
 
   return -1;
 }
+
+//  복습
+//  ❌
+function solution(maps) {
+  let answer = 0;
+
+  let dx = [1, -1, 0, 0];
+  let dy = [0, 0, 1, -1];
+  let me = [1, 1];
+
+  let goalX = maps[0].length;
+  let goalY = maps.length;
+
+  for (let i = 0; i < goalX * goalY; i++) {
+    if (me[0] === goalX && me[1] === goalY) {
+      break;
+    }
+
+    for (let j = 0; j < dx.length; j++) {
+      let moveX = me[0] + dx[j];
+      let moveY = me[1] + dy[j];
+
+      if (
+        moveX <= goalX &&
+        moveX >= 0 &&
+        moveY <= goalY &&
+        moveY >= 0 &&
+        maps[moveX - 1][moveY - 1] === 1
+      ) {
+        me[0] += dx[j];
+        me[1] += dy[j];
+        maps[moveX][moveY] = 0;
+        answer++;
+      }
+    }
+  }
+  // console.log(me);
+
+  return me[0] === goalX && me[1] === goalY ? answer : -1;
+}
