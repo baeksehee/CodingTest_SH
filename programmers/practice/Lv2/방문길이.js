@@ -80,3 +80,84 @@ function solution(dirs) {
   //  역방향까지 들어가 있어서 그래
   return set.size / 2;
 }
+
+//  복습 코드
+//  ❌
+
+// 11시 42분
+//  처음 걸어본 길이
+//  500 이하의 dirs 길이로 제한사항은 딱히.. 문제도 그런 느낌임
+function solution(dirs) {
+  let UDRL = ["U", "D", "R", "L"];
+  let d = [
+    [0, 1],
+    [0, -1],
+    [1, 0],
+    [-1, 0],
+  ];
+  let me = [0, 0];
+  let record = []; // 걸은 거리 기록
+
+  for (let i = 0; i < dirs.length; i++) {
+    let [plusX, plusY] = d[UDRL.indexOf(dirs[i])];
+    let newMe = [me[0] + plusX, me[1] + plusY];
+    let a = "" + me[0] + newMe[0] + me[1] + newMe[1];
+    let b = "" + me[1] + newMe[1] + me[0] + newMe[0];
+
+    if (newMe[0] < -5 && newMe > 5 && newMe[1] > 5 && newMe[1] < -5) {
+      me[0] = newMe[0];
+      me[1] = newMe[1];
+    } else if (
+      newMe[0] >= -5 &&
+      newMe[0] <= 5 &&
+      newMe[1] >= -5 &&
+      newMe[1] <= 5 &&
+      !record.includes(a) &&
+      !record.includes(b)
+    ) {
+      record.push(a);
+      record.push(b);
+      me[0] = newMe[0];
+      me[1] = newMe[1];
+    }
+  }
+
+  return record.length / 2;
+}
+
+//  고친 코드
+//  중복을 없애고 싶다면 set을 꼭 사용해라!
+//  시작점 도착점
+//  도착점 시작점
+//  이 부분 코드가 이상했음
+function solution(dirs) {
+  let UDRL = ["U", "D", "R", "L"];
+  let d = [
+    [0, 1],
+    [0, -1],
+    [1, 0],
+    [-1, 0],
+  ];
+  let me = [0, 0];
+  let record = new Set();
+
+  for (let i = 0; i < dirs.length; i++) {
+    // console.log(dirs[i]);
+    // let [plusX, plusY] =  d[UDRL.indexOf(dirs[i])];
+    let newMe = [
+      me[0] + d[UDRL.indexOf(dirs[i])][0],
+      me[1] + d[UDRL.indexOf(dirs[i])][1],
+    ];
+    console.log(newMe);
+    let a = "" + me[0] + me[1] + newMe[0] + newMe[1];
+    let b = "" + newMe[0] + newMe[1] + me[0] + me[1];
+
+    if (newMe[0] < -5 || newMe[0] > 5 || newMe[1] > 5 || newMe[1] < -5)
+      continue;
+    record.add(a);
+    record.add(b);
+    me = [newMe[0], newMe[1]];
+  }
+
+  return record.size / 2;
+}
