@@ -46,3 +46,19 @@ function solution(prices) {
 
   return answer;
 }
+
+//  복습 코드
+
+function solution(prices) {
+  //  0초로 초기화!
+  let answer = new Array(prices.length).fill(0);
+
+  for (let i = 0; i < prices.length; i++) {
+    for (let j = i + 1; j < prices.length; j++) {
+      answer[i]++;
+      if (prices[i] > prices[j]) break;
+    }
+  }
+
+  return answer;
+}
