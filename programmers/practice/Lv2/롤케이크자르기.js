@@ -132,3 +132,37 @@ function solution(topping) {
 
   return answer;
 }
+
+//  복습 ❌`
+//  허술한 점이 많은 코드
+//  앗! 배열처럼 접근하면 안 되는구나 () 이렇게 접근 해야함
+//  has로 있는지 확인해야 함
+function solution(topping) {
+  let answer = 0;
+  let me = new Map();
+  let you = new Map();
+
+  for (let i = 0; i < topping.length; i++) {
+    if (me[topping[i] + 1]) {
+      me.set(topping[i] + 1, (me.get[topping[i] + 1] += 1));
+    } else me.set(topping[i] + 1, 1);
+
+    console.log(me);
+  }
+
+  for (let j = 0; j < topping.length; j++) {
+    if (you[topping[j] + 1]) {
+      you.set(topping[j], you.get[topping[j] + 1] + 1);
+    } else you.set(topping[j], 1);
+
+    if (me.get[topping[j] + 1 > 1]) {
+      me.set(topping[j], me.get[topping[j] + 1] - 1);
+    } else me.delete(topping[j]);
+
+    // console.log(you.size === me.size);
+    // console.log(me, you);
+    if (you.size === me.size) answer++;
+  }
+
+  return answer;
+}
