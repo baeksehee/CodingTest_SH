@@ -115,3 +115,38 @@ function solution(maps) {
 
   return me[0] === goalX && me[1] === goalY ? answer : -1;
 }
+
+//  복습
+// ❌`
+// 이상한데 가까워짐
+
+function solution(maps) {
+  let answer = -1;
+  let me = [0, 0];
+  let goalX = maps.length - 1;
+  let goalY = maps[0].length - 1;
+  let dx = [1, -1, 0, 0];
+  let dy = [0, 0, -1, 1];
+
+  let queue = [[0, 0, 1]];
+
+  while (queue.length) {
+    let [x, y, l] = queue.shift();
+    if (x === goalX && y === goalY) return l;
+
+    for (let i = 0; i < dx.length; i++) {
+      let newX = x + dx[i];
+      let newY = y + dy[i];
+
+      if (newX > 5 || newX < -5 || newY > 5 || newY < -5) continue;
+
+      if (maps[newX][newY] === 0) continue;
+
+      me = [newX, newY];
+      l++;
+    }
+    queue.push([me[0], me[1], l + 1]);
+  }
+
+  return answer;
+}
