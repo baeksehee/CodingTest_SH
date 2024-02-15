@@ -94,3 +94,42 @@ function solution(s) {
 
   return answer;
 }
+
+//  복습의 복습 코드
+//  ⭕
+//  10시 58분
+function solution(s) {
+  let answer = 0;
+
+  if (s.length % 2 === 1) return 0;
+
+  for (let i = 0; i < s.length; i++) {
+    let ss = s.slice(i) + s.slice(0, i + 1);
+
+    let stack = [];
+
+    for (let j = 0; j < s.length; j++) {
+      if (ss[j] === "(" || ss[j] === "{" || ss[j] === "[") {
+        stack.push(ss[j]);
+        continue;
+      } else {
+        if (ss[j] === ")" && stack[stack.length - 1] === "(") {
+          stack.pop();
+          continue;
+        }
+        if (ss[j] === "}" && stack[stack.length - 1] === "{") {
+          stack.pop();
+          continue;
+        }
+        if (ss[j] === "]" && stack[stack.length - 1] === "[") {
+          stack.pop();
+          continue;
+        }
+      }
+    }
+
+    if (stack.length === 0) answer++;
+  }
+
+  return answer;
+}
