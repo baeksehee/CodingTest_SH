@@ -74,3 +74,32 @@ function solution(n, computers) {
 
   return answer;
 }
+
+//   참고
+//  깔끔하다 코드가
+//  Published 2021. 12. 30. 23:56
+//  [프로그래머스] 자바스크립트 '네트워크' 문제 풀이 (LV.3)
+//  출처: https://yong-nyong.tistory.com/22 [💻용뇽 개발 노트💻:티스토리]
+function solution(n, computers) {
+  let answer = 0;
+  let visited = new Array(n).fill(false);
+
+  function dfs(index) {
+    visited[index] = true;
+
+    for (let i = 0; i < computers.length; i++) {
+      if (computers[index][i] && !visited[i]) {
+        dfs(i);
+      }
+    }
+  }
+
+  for (let i = 0; i < n; i++) {
+    if (!visited[i]) {
+      dfs(i, visited, computers);
+      answer++;
+    }
+  }
+
+  return answer;
+}
