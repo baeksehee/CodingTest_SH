@@ -72,3 +72,35 @@ function solution(N, road, K) {
 
   return dist.filter((e) => e <= K).length;
 }
+
+//  [프로그래머스] 배달 JS
+//  Hwang Won Tae·2023년 3월 31일 - velog
+//  코드 실행을 따라해봐서 이해함 어려움!!!
+
+function solution(N, road, K) {
+  let answer = 0;
+  let lines = Array.from(Array(N + 1), () => []);
+  let arr = new Array(N + 1).fill(Infinity);
+
+  for (let i = 0; i < road.length; i++) {
+    let [a, b, c] = road[i];
+    lines[a].push({ to: b, cost: c });
+    lines[b].push({ to: a, cost: c });
+  }
+
+  arr[1] = 0;
+  let queue = [{ to: 1, cost: 0 }];
+
+  while (queue.length) {
+    let { to } = queue.pop();
+
+    for (let line of lines[to]) {
+      if (arr[line.to] > arr[to] + line.cost) {
+        arr[line.to] = arr[to] + line.cost;
+        queue.push(line); // 이 부분만 기억 안 남았음
+      }
+    }
+  }
+
+  return arr.filter((e) => e <= K).length;
+}

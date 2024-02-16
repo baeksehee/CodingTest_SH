@@ -84,3 +84,45 @@ function solution(arr) {
 
   return answer;
 }
+
+// 적어보기
+function solution(arr) {
+  let answer = [0, 0];
+
+  function check(x, y, n) {
+    // if(n < 1) return;
+    if (n === 1) return answer[arr[x][y]]++;
+    //  윗줄 코드! n === 1일때도 count하는거 까먹음
+    let ok = true;
+
+    // 범위가 x + n이라는 걸 .. 못 썼네
+    for (let i = x; i < x + n; i++) {
+      for (let j = y; j < y + n; j++) {
+        if (arr[x][y] !== arr[i][j]) {
+          ok = false;
+          // break; 해야했는데
+          break;
+        }
+      }
+    }
+
+    // if(ok) answer[arr[x][y]] += 1;
+    if (ok) return answer[arr[x][y]]++;
+    // return 하는 이유는! 이 네모는 다 동일하니
+    //  더이상 세분화해서 안 봐도 된다.
+
+    n = n / 2;
+    // check(x, y+n, n);
+    // check(x+n , y, n);
+    // check(x+n, y+n, n);
+    // check(x,y,n);
+    check(x, y, n);
+    check(x, y + n, n);
+    check(x + n, y, n);
+    check(x + n, y + n, n);
+  }
+
+  check(0, 0, arr.length);
+
+  return answer;
+}
