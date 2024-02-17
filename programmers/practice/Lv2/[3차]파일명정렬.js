@@ -92,3 +92,30 @@ function solution(files) {
     return ANum - BNum;
   });
 }
+
+//  내 복습코드
+//  ⭕
+function solution(files) {
+  return files.sort((a, b) => {
+    let aHead = a.match(/^\D+/).toString().toUpperCase();
+    let bHead = b.match(/^\D+/).toString().toUpperCase();
+
+    if (aHead > bHead) return 1;
+    else if (aHead < bHead) return -1;
+    //  여기에 else (aHead < bHead) return 0 하니깐
+    //  모든 동작이 여기서 멈춘 듯
+    // 동일할 때는 return 하지 말고
+    //  뒤에 숫자 값을 비교해하는데!
+
+    //숫자 찾는 법 까먹음
+    //  까먹었었는데 위에 블로그에서 가지고온 정답 코드
+    //  replace(/^0+/, ""); 이렇게 처음 0들을 없애고 했는데
+    // 사실 빼기 연산을 하면 상관없었던 것임
+    // 이렇게 해도 됨
+    let aNumber = a.match(/\d+/);
+    let bNumber = b.match(/\d+/);
+    // console.log(aNumber, bNumber);
+
+    return aNumber - bNumber;
+  });
+}

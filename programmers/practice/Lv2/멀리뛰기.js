@@ -60,3 +60,24 @@ function solution(n) {
 
 //  피보나치 수열
 //  그런데 DP 로 저장한 건가?
+
+//  복복복습 내 코드
+//  ⭕
+//  dp 상향식으로 dp 테이블에 값을 저장한거라고 생각함
+function solution(n) {
+  let answer = 0;
+
+  let dp = new Array(2000).fill(0);
+
+  dp[0] = 1;
+  dp[1] = 1;
+  dp[2] = 2;
+
+  for (let i = 2; i <= n; i++) {
+    dp[i] = (dp[i - 2] % 1234567) + (dp[i - 1] % 1234567);
+  }
+
+  answer = dp[n] % 1234567;
+
+  return answer;
+}
