@@ -71,3 +71,22 @@ function solution(numbers) {
 
   return answer;
 }
+
+//  ❌
+//  모든 문자열이 "0"인 예외상황을 체크하지 않아서 틀림
+function solution(numbers) {
+  let answer = "";
+  numbers.sort((a, b) => {
+    let aStr = a.toString();
+    let bStr = b.toString();
+
+    if (aStr + bStr - (bStr + aStr) > 0) return -1;
+    else if (aStr + bStr - (bStr + aStr) < 0) return 1;
+    else 0;
+  });
+
+  answer = numbers.join("");
+  // if (answer.split("").filter((e) => e == "0").length === answer.length)
+  //   return "0";
+  return answer;
+}
