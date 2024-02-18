@@ -64,3 +64,34 @@ function solution(priorities, location) {
 
   return out.length;
 }
+
+//  복복습
+//  ⭕
+
+function solution(priorities, location) {
+  let answer = 0;
+  let index = [];
+
+  for (let i = 0; i < priorities.length; i++) {
+    index[i] = i;
+  }
+
+  while (priorities.length > 0) {
+    let max = Math.max(...priorities);
+    let maxIndex = priorities.indexOf(max);
+
+    let priority = priorities.shift();
+    let ind = index.shift();
+
+    if (priority === max) {
+      answer++;
+    } else {
+      priorities.push(priority);
+      index.push(ind);
+    }
+
+    if (ind === location && priority === max) break;
+  }
+
+  return answer;
+}
