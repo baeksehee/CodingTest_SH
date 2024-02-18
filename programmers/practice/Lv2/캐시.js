@@ -73,3 +73,47 @@ function solution(cacheSize, cities) {
 
   return answer;
 }
+
+//  복복습
+//  ⭕
+//  LRU 최근에 사용한 것을 넣는 것 queue
+//  cache에 있으면 1 없으면 5
+//  있으면 그부분을 없애고 다시 queue에 넣기
+//  없으면 가장 오래된 것을 빼고 새로운 것을 넣기
+function solution(cacheSize, cities) {
+  let answer = 0;
+  let caches = [];
+
+  if (cacheSize === 0) return cities.length * 5;
+
+  for (let city of cities) {
+    city = city.toUpperCase();
+    if (caches.length === 0) {
+      answer += 5;
+      caches.push(city);
+      continue;
+    }
+
+    if (caches.length < cacheSize) {
+      if (caches.includes(city)) {
+        answer += 1;
+        let index = caches.indexOf(city);
+        caches.splice(index, 1);
+      } else {
+        answer += 5;
+      }
+    } else if (caches.length === cacheSize) {
+      if (caches.includes(city)) {
+        answer += 1;
+        let index = caches.indexOf(city);
+        caches.splice(index, 1);
+      } else {
+        answer += 5;
+        caches.shift();
+      }
+    }
+    caches.push(city);
+  }
+
+  return answer;
+}
