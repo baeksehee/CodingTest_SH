@@ -88,3 +88,23 @@ function solution(citations) {
 
   return answer;
 }
+
+//  복복복습
+//  ❌
+function solution(citations) {
+  let answer = 0;
+  citations.sort((a, b) => b - a);
+  // console.log(citations);
+  for (let i = 0; i < citations.length; i++) {
+    if (i + 1 >= citations[i]) {
+      //  인용횟수 citations[i]
+      //  인용횟수 편은 i
+      //  인용 논문이 i편 이상이고 나머지 논문이 i편 이하
+      //  i의 최댓값
+      answer = citations[i];
+      break;
+    }
+  }
+
+  return answer;
+}
