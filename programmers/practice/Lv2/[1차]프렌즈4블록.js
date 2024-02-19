@@ -162,3 +162,63 @@ function solution(m, n, board) {
 
   return answer;
 }
+
+//  복습 코드
+//  ⭕ but 시간초과
+//  코드가 정밀하게 짜져야 함 ..
+//  m, n 매개변수가 있따는 걸 까먹었네! 그래서 잘 풀린 듯
+function solution(m, n, board) {
+  let answer = 0;
+  let nB = [];
+  let flag = true;
+
+  for (let i = 0; i < board.length; i++) {
+    board[i] = board[i].split("").reverse();
+  }
+
+  for (let i = 0; i < board[0].length; i++) {
+    nB.push([]);
+    for (let j = 0; j < board.length; j++) {
+      nB[i].push(board[j][i]);
+    }
+  }
+
+  for (let i = 0; i < nB.length; i++) {
+    nB[i] = nB[i].reverse();
+  }
+
+  while (flag) {
+    let bye = [];
+
+    for (let i = 0; i < nB.length - 1; i++) {
+      for (let j = 0; j < nB[i].length - 1; j++) {
+        if (
+          nB[i][j] === nB[i + 1][j] &&
+          nB[i][j] === nB[i][j + 1] &&
+          nB[i][j] === nB[i + 1][j + 1]
+        ) {
+          bye.push(`${i},${j}`);
+          bye.push(`${i + 1},${j}`);
+          bye.push(`${i},${j + 1}`);
+          bye.push(`${i + 1},${j + 1}`);
+        }
+      }
+    }
+
+    let list = new Set(bye);
+    list = Array.from(list);
+    if (list.length < 4) flag = false;
+
+    answer += list.length;
+
+    while (list.length > 0) {
+      let [x, y] = list.shift().split(",").map(Number);
+      nB[x][y] = 0;
+    }
+
+    for (let i = 0; i < nB.length; i++) {
+      nB[i] = nB[i].filter((e) => e != 0);
+    }
+  }
+  return answer;
+}

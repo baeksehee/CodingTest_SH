@@ -76,3 +76,48 @@ function solution(word) {
 //  생략
 //  틀린 이유 dfs라는 걸 알았는데 적지 못함
 //  규칙 찾아서 하는 거 하려고 했는 reduce 사용법 까먹음
+
+//  복복습 코드
+// [1번째 방법] 12시 39분 - 12시 53분 (14분)
+// ⭕
+function solution(word) {
+  let answer = [];
+  let alphabet = ["A", "E", "I", "O", "U"];
+
+  function dfs(w, nowl, l) {
+    if (nowl === l) {
+      answer.push(w);
+      return;
+    }
+
+    for (let i = 0; i < 5; i++) {
+      dfs(w + alphabet[i], nowl + 1, l);
+    }
+  }
+
+  for (let i = 1; i <= 5; i++) dfs("", 0, i);
+  let ex = ["A", "B", "AB"];
+
+  // console.log(answer.sort());
+  // console.log(answer[answer.length - 1]);
+  return answer.sort().indexOf(word) + 1;
+}
+
+//  복복습 두 번째 방식 코드
+//  이거 잘 모르겠음 규칙
+//  [2번째 방법] 규칙 찾아서 하기 12:55 -
+//  30분 +
+//  word.length === 1은 1
+//  word.length === 2은 ["A", "E", "I", "O", "U"].length + 1 = 6
+//  word.length === 3은 (["A", "E", "I", "O", "U"].length + 1) * 5 + 1  = 31
+//  word.length === 4은 ((["A", "E", "I", "O", "U"].length + 1) * 5 + 1) * 5 + 1 = 156
+//  word.length === 5 는 156 * 5 + 1 = 781
+function solution(word) {
+  let w = ["A", "E", "I", "O", "U"];
+  let c = [781, 156, 31, 6, 1];
+
+  return (
+    word.split("").reduce((pre, arr, i) => pre + w.indexOf(arr) * c[i], 0) +
+    word.length
+  );
+}

@@ -167,3 +167,52 @@ function solution(msg) {
 
   return answer;
 }
+
+//  복복습
+//  ⭕
+//  while 문과 shift를 잘 사용함 ! 그리고 undefined까지
+function solution(msg) {
+  let answer = [];
+  let words = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+  msg = msg.split("");
+
+  while (msg.length > 0) {
+    let word = msg.shift();
+    while (words.includes(word + msg[0])) {
+      word += msg.shift();
+    }
+    answer.push(words.indexOf(word) + 1);
+    if (msg[0] != undefined) {
+      words.push(word + msg[0]);
+    }
+  }
+
+  return answer;
+}

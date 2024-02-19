@@ -90,3 +90,23 @@ function solution(numbers) {
   //   return "0";
   return answer;
 }
+
+//  복복습 코드
+//  ⭕
+function solution(numbers) {
+  let answer = "";
+
+  answer = numbers
+    .sort((a, b) => {
+      let strA = a.toString();
+      let strB = b.toString();
+
+      return strB + strA - (strA + strB);
+    })
+    .join("");
+
+  if (answer.split("").filter((e) => e == 0).length === answer.length)
+    return "0";
+
+  return answer;
+}

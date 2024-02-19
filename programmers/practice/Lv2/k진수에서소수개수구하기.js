@@ -64,3 +64,47 @@ function solution(n, k) {
   }
   return nums.length - minus;
 }
+
+//  복복습
+//  ❌ 시간초과
+
+function solution(n, k) {
+  let answer = 0;
+
+  n = n.toString(k);
+  n = n.split(0);
+
+  for (let i = 0; i < n.length; i++) {
+    let num = Number(n[i]);
+    if (num === 1) continue;
+    if (num === 2) {
+      answer++;
+    }
+    for (let j = 2; j < num; j++) {
+      if (num % j === 0) break;
+      else if (j === num - 1) answer++;
+    }
+  }
+  return answer;
+}
+
+//  복복습 코드 고친 거
+
+function solution(n, k) {
+  n = n.toString(k);
+  n = n.split(0).filter((e) => e.length >= 1 && e != "" && e != "1");
+  let minus = 0;
+
+  for (let i = 0; i < n.length; i++) {
+    let num = Number(n[i]);
+    if (num === 1) continue;
+    for (let j = 2; j <= Math.sqrt(num); j++) {
+      // for문 조건문의 기준 수가 정수가 아닐 때는 이걸 이용할 생각을 하지 말자!!! 다른 대안으로 고고
+      if (num % j === 0) {
+        minus++;
+        break;
+      }
+    }
+  }
+  return n.length - minus;
+}

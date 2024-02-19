@@ -166,3 +166,38 @@ function solution(topping) {
 
   return answer;
 }
+
+//  복복습
+//  ⭕
+//  Map 재미있음
+function solution(topping) {
+  let answer = 0;
+  let me = new Map();
+  let bro = new Map();
+
+  for (let i = 0; i < topping.length; i++) {
+    if (me.has(topping[i])) {
+      me.set(topping[i], me.get(topping[i]) + 1);
+    } else {
+      me.set(topping[i], 1);
+    }
+  }
+
+  for (let i = 0; i < topping.length; i++) {
+    if (bro.has(topping[i])) {
+      bro.set(topping[i], bro.get(topping[i]) + 1);
+    } else {
+      bro.set(topping[i], 1);
+    }
+
+    if (me.get(topping[i]) === 1) {
+      me.delete(topping[i]);
+    } else {
+      me.set(topping[i], me.get(topping[i]) - 1);
+    }
+
+    if (me.size === bro.size) answer++;
+  }
+
+  return answer;
+}

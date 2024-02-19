@@ -85,3 +85,24 @@ function solution(numbers, target) {
 
   return answer;
 }
+
+//  복복습
+//  ⭕
+
+function solution(numbers, target) {
+  let answer = 0;
+
+  function dfs(result, num) {
+    if (num === numbers.length) {
+      if (result === target) answer++;
+      return;
+    }
+
+    dfs(result - numbers[num], num + 1);
+    dfs(result + numbers[num], num + 1);
+  }
+
+  dfs(0, 0);
+
+  return answer;
+}

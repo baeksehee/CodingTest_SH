@@ -59,3 +59,7 @@ function solution(numbers) {
   console.log(answer, stack);
   return answer;
 }
+
+// 복복복습 코드 의미 없음
+//  이문제는 해당 인덱스 뒤에 있는 큰 숫자를 찾는 것
+//  그걸 활용해서 stack while 문 환상적
