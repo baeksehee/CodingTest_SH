@@ -161,3 +161,35 @@ function solution(dirs) {
 
   return record.size / 2;
 }
+
+//  복복습
+//  ⭕
+function solution(dirs) {
+  let answer = 0;
+  let d = { U: [0, 1], D: [0, -1], R: [1, 0], L: [-1, 0] };
+  dirs = dirs.split("");
+  let record = [];
+  let c = [0, 0];
+
+  while (dirs.length > 0) {
+    let x = c[0];
+    let y = c[1];
+
+    let [xx, yy] = d[dirs.shift()];
+    let nx = x + xx;
+    let ny = y + yy;
+
+    let ro = "" + x + y + nx + ny;
+    let rt = "" + nx + ny + x + y;
+
+    if (nx < 6 && nx > -6 && ny < 6 && ny > -6) {
+      if (!record.includes(ro) && !record.includes(rt)) {
+        record.push(ro);
+        record.push(rt);
+      }
+      c = [nx, ny];
+    }
+  }
+
+  return record.length / 2;
+}
