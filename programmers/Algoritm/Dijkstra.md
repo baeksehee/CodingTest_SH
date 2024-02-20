@@ -47,51 +47,15 @@
 
 ### 예제 코드
 
+순차 탐색
+
 > 순차 탐색 예제 코드 작성하려다고 포기함!!
 > 좋은데... 어차피 우선순위 heap을 사용한 코드가
 > 시간 복잡도도 적다고 해서 heap을 도전하려고 합니다
 > 잘가..
 
-```js
-//  노드의 개수, 간선의 개수 입력 받기
-const n, m = input.split(" ");
-//  시작 노드 번호를 입력 받기
-const start = input;
-//   각 노드에 연결되어 있는 노드에 대한 정보를 담는 배열을 만들기
-let graph = [];
+우선순위큐
 
-for(let i = 0; i < n + 1; i++) {
-    graph.push([]);
-}
-//  방문한 적이 있는지 체크하는 목적의 리스트를 만들기
-let visited = new Array(n + 1).fill(false);
-//  최단 거리 테이블을 모두 무한으로 초기화
-let distance = new Array(n+1).fill(Infinity);
-
-//  모든 간선 정보를 입력받기
-for(let i = 0; i <m; i++) {
-    let [a, b, c] = input.split(" ");
-    //  a번 노드에서 b번 노드로 가는 비용이 c라는 의미
-    graph[a].push({to: a, d: c});
-}
-
-//  방문하지 않은 노드 중에서, 가장 최단 거리가 짧은 노드의 번호를 반환
-function get_smallest_node() {
-    let min_value = Infinity;
-    let index = 0;  // 가장 최단 거리가 짧은 노드(인덱스)
-    for(let i = 1; i < n+1; i++) {
-        if(distance[i] < min_value && !visited[i]){
-            min_value = distance[i];
-            index = i;
-        }
-    }
-    return index;
-}
-
-function dijkstra(start) {
-    //  시작 노드에 대해서 초기화
-    distance[start] = 0;
-    visited[start] = true;
-    for(let i = 0; i < graph[start].length;)
-}
-```
+> python은 힙 자료구조 라이브러리가 있다고...
+> 나는 js인데...
+> 찾아보니 꼭 힙 자료구조를 완벽하게 안 사용해도 되는 듯....
