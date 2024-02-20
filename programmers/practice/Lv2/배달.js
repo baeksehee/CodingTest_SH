@@ -104,3 +104,50 @@ function solution(N, road, K) {
 
   return arr.filter((e) => e <= K).length;
 }
+
+//  복습 코드
+
+function solution(N, road, K) {
+  let answer = 0;
+  let graph = [];
+  let distance = new Array(N + 1).fill(Infinity);
+
+  for (let i = 0; i < N + 1; i++) {
+    graph.push([]);
+  }
+
+  for (let r of road) {
+    let [f, t, d] = r;
+    graph[f].push({ to: t, d: d });
+    graph[t].push({ to: f, d: d }); //양방향
+  }
+
+  distance[1] = 0;
+  let queue = [{ to: 1, d: 0 }];
+
+  // for(let i = 1; i < N+1; i++) {
+  while (queue.length) {
+    // let queue = [];
+    let { to } = queue.pop();
+
+    //     for(let j = 1; j <graph[i].length; j++) {
+    //         queue.push(graph[i][j]);
+    //     }
+
+    // while(queue.length > 0) {
+    //     let [to, d] = queue.pop();
+    //        if(distance[i] +d < distance[to]) {
+    //            distance[to] = distance[i] +d
+    //        }
+    //    }
+    for (let g of graph[to]) {
+      if (distance[g.to] > distance[to] + g.d) {
+        distance[g.to] = distance[to] + g.d;
+        queue.push(g);
+      }
+    }
+  }
+
+  // console.log(distance);
+  return distance.filter((e) => e <= K).length;
+}
