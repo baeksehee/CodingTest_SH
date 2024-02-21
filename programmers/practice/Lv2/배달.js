@@ -151,3 +151,42 @@ function solution(N, road, K) {
   // console.log(distance);
   return distance.filter((e) => e <= K).length;
 }
+
+//  복복습 코드
+//  ⭕
+//  10시 33분
+//  엥? 양방향 문제였음 ?
+//  최단 경로를 구하는 것!
+//  기준은 노드 1번 마을
+//  양의 간선들
+function solution(N, road, K) {
+  let answer = 0;
+  let lines = new Array(N + 1).fill().map((e) => []);
+  let visited = new Array(N + 1).fill(false);
+  let dis = new Array(N + 1).fill(Infinity);
+
+  for (let r of road) {
+    let [f, t, d] = r;
+    lines[f].push({ to: t, d: d });
+    lines[t].push({ to: f, d: d });
+  }
+
+  let queue = [[1, 0]];
+  dis[1] = 0;
+
+  while (queue.length > 0) {
+    let node = queue.pop()[0];
+    // visited[node] = true;
+    for (let l of lines[node]) {
+      let to = l.to;
+      let d = l.d;
+      if (dis[to] > dis[node] + d) {
+        dis[to] = dis[node] + d;
+        queue.push([to, dis[to]]);
+      }
+    }
+    visited[node] = true;
+  }
+  // console.log(dis);
+  return dis.filter((e) => e <= K).length;
+}
