@@ -101,3 +101,29 @@ function solution(operations) {
 
   return heap.length ? [Math.max(...heap), Math.min(...heap)] : [0, 0];
 }
+
+//  복습
+
+function solution(operations) {
+  let answer = [];
+  let heap = [];
+  let operation = operations.map((e) => e.split(" "));
+
+  for (let op of operation) {
+    if (op[0] === "I") {
+      heap.push(Number(op[1]));
+    } else {
+      if (op[1] === "1") {
+        let maxI = heap.indexOf(Math.max(...heap));
+        heap.splice(maxI, 1);
+      } else {
+        let minI = heap.indexOf(Math.min(...heap));
+        heap.splice(minI, 1);
+      }
+    }
+  }
+
+  // console.log(heap);
+
+  return heap.length > 0 ? [Math.max(...heap), Math.min(...heap)] : [0, 0];
+}
