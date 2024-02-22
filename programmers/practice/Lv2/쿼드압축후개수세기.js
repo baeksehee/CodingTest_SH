@@ -126,3 +126,39 @@ function solution(arr) {
 
   return answer;
 }
+
+//  복습 코드
+//  ❌
+//  분할 정복이라고 했음
+//  dp랑 비슷하다고 했나? 차이점은 중복되는 것이 아니라는 점
+function solution(arr) {
+  let answer = [0, 0];
+  let n = arr.length;
+
+  function dfs(x, y) {
+    if (n < 1) return;
+
+    for (let i = x; i < x + n; i++) {
+      for (let j = y; j < y + n; j++) {
+        if (arr[i][j] !== arr[x][y]) break;
+        else if (i === x + n - 1 && j === y + n - 1) arr[i][j] === true;
+      }
+    }
+
+    if (arr[x + n - 1][y + n - 1] === true) {
+      answer[arr[x][y]]++;
+      return;
+    }
+
+    n = n / 2;
+
+    dfs(x + n - 1, y);
+    dfs(x + n - 1, y + n - 1);
+    dfs(x, y + n - 1);
+    dfs(x, y);
+  }
+
+  dfs(0, 0);
+
+  return answer;
+}
