@@ -246,3 +246,45 @@ let hi = [c, d, e].sort((a, b) => a - b);
 console.log(ex); // 	[ '34', '3', '30' ]
 console.log(hi); //  [ '3', '30', '34' ]
 ```
+
+## 등굣길
+
+### Array.from()
+
+[mdn web docs_Array.from]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/from")
+
+```js
+//  n도 number, m도 number
+let dp = Array.from({ length: n }, () => Array(m).fill(0));
+
+//  문서
+//  화살표 함수와 Array.from() 사용하기
+
+//  화살표 함수를 map 함수로 사용하여 요소 조작
+Array.from([1, 2, 3], (x) => x + x);
+//  [2, 4, 6]
+
+//  숫자 시퀀스 생성하기
+//  배열의 각 위취가 'undefined'로 초기화되므로
+//  아래 'v'의 값은 'undefined'가 됨
+Array.from({ length: 5 }, (v, i) => i);
+//  [0, 1, 2, 3, 4]
+```
+
+### Array.prototype.some()
+
+[mdn web docs_Array.prototype.some()]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/some")
+
+> 배열 안의 어떤 요소라도 주어진 판별 함수를 적어도 하나라도 통과하는지 테스트함. 만약 배열에 주어진 함수가 true를 반환하면 true를 반홤함
+>
+> 이 메서드는 배열을 변경하지 않음
+
+```js
+//  예제 코드
+if (puddles.some(([x, y]) => x === j + 1 && y === i + 1)) dp[i][j] = 0;
+
+//  문서 코드
+[2, 5, 8, 1, 4]
+  .some((x) => x > 10) // false
+  [(12, 5, 8, 1, 4)].some((x) => x > 10); // true
+```
