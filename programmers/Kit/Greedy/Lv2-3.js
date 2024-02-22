@@ -112,3 +112,24 @@ function solution(number, k) {
 
   return stack.join("");
 }
+
+//  복습 코드
+//  ❌ 지만 고친 코드
+function solution(number, k) {
+  let answer = "";
+  let stack = [];
+  number = number.split("");
+  number.forEach((n, i) => {
+    stack.push(n);
+    while (stack.at(-1) < number[i + 1] && k > 0) {
+      stack.pop();
+      k--;
+    }
+  });
+
+  stack.splice(number.length - k, k);
+
+  answer = stack.join("");
+
+  return answer;
+}
