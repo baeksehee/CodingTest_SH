@@ -119,3 +119,67 @@ function solution(jobs) {
 
   return Math.floor(answer / leng);
 }
+
+//  복습
+//  ❌
+//  내 코드
+
+function solution(jobs) {
+  let leng = jobs.length;
+  let answer = 0;
+  let time = 0;
+  let wait = [];
+
+  jobs.sort((a, b) => a[0] - b[0]);
+
+  while (jobs.length > 0 || wait.length > 0) {
+    while (jobs[0][0] > time) time++;
+
+    while (jobs.length > 0 && time >= jobs[0][0]) {
+      wait.push(jobs.shift());
+    }
+
+    wait.sort((a, b) => a[1] - b[1]);
+
+    while (wait.length > 0) {
+      let job = wait.shift();
+      answer += time - job[0] + job[1];
+      time += job[1];
+    }
+  }
+
+  return Math.floor(answer / leng);
+}
+
+//  정답 코드
+
+//  9시 13분 18
+//  9시 20분
+
+function solution(jobs) {
+  let leng = jobs.length;
+  let answer = 0;
+  let time = 0;
+  let wait = [];
+
+  jobs.sort((a, b) => a[0] - b[0]);
+
+  while (jobs.length > 0 || wait.length > 0) {
+    // while(jobs[0][0] > time && jobs.length > 0) time++;
+
+    while (jobs.length > 0 && time >= jobs[0][0]) {
+      wait.push(jobs.shift());
+    }
+
+    wait.sort((a, b) => a[1] - b[1]);
+
+    if (wait.length > 0) {
+      // while 문을 if 문으로
+      let job = wait.shift();
+      answer += time - job[0] + job[1];
+      time += job[1];
+    } else time = jobs[0][0]; //else 문 추가 ...
+  }
+
+  return Math.floor(answer / leng);
+}
