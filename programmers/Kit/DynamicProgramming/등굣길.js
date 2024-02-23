@@ -101,3 +101,52 @@ function solution(m, n, puddles) {
 
   return dp[n - 1][m - 1];
 }
+
+//  복습
+//  ❌
+//  내 틀린 코드
+
+function solution(m, n, puddles) {
+  const num = 1000000007;
+  let answer = 0;
+  let arr = new Array(n).fill().map((e) => new Array(m).fill().map((e) => []));
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (i === 0) arr[i][j] = 1;
+      else if (j === 0) arr[i][j] = 1;
+      else arr[i][j] = 0;
+    }
+  }
+
+  for (let i = 1; i < n; i++) {
+    for (let j = 1; j < m; j++) {
+      if (puddles.some(([x, y]) => x - 1 == j && y - 1 == i)) arr[i][j] = 0;
+      else {
+        arr[i][j] = (arr[i - 1][j] + arr[i][j - 1]) % num;
+      }
+    }
+  }
+
+  return arr[n - 1][m - 1];
+}
+
+//  정답 코드
+
+function solution(m, n, puddles) {
+  let dp = Array.from({ length: n }, () => Array(m).fill(0));
+  let num = 1000000007;
+  dp[0][0] = 1;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
+      if (i === 0 && j === 0) continue;
+      if (puddles.some(([x, y]) => x === j + 1 && y === i + 1)) dp[i][j] = 0;
+      else
+        dp[i][j] =
+          ((i > 0 ? dp[i - 1][j] : 0) + (j > 0 ? dp[i][j - 1] : 0)) % num;
+    }
+  }
+
+  return dp[n - 1][m - 1];
+}

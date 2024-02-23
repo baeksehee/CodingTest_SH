@@ -63,3 +63,52 @@ function solution(bridge_length, weight, truck_weights) {
 
   return answer;
 }
+
+//  이상한 내 풀이
+//  복습
+//  ❌
+
+function solution(bridge_length, weight, truck_weights) {
+  let answer = 0;
+  let stack = [];
+  let count = 0;
+  let max = truck_weights.length;
+
+  while (truck_weights.length > 0) {
+    let kg = 0;
+    while (weight >= kg + truck_weights[0]) {
+      kg = truck_weights[0];
+      stack.push(truck_weights.shift());
+    }
+    // console.log(stack);
+    if (stack.length === max) return bridge_length + stack.length * 1;
+
+    if (stack.length === 1) answer += bridge_length;
+    else if (stack.length > 0) answer += bridge_length + 1 * stack.length;
+
+    stack = [];
+  }
+
+  return answer;
+}
+
+//  정답 코드
+function solution(bridge_length, weight, truck_weights) {
+  let answer = 0;
+  let bridge = new Array(bridge_length).fill(0);
+  let currentWeight = 0;
+
+  while (truck_weights.length > 0) {
+    answer++; // 이 부분이랑
+    let bye = bridge.shift();
+    currentWeight -= bye;
+
+    if (weight >= truck_weights[0] + currentWeight) {
+      let plus = truck_weights.shift();
+      currentWeight += plus;
+      bridge.push(plus);
+    } else bridge.push(0);
+  }
+
+  return answer + bridge_length; // 이 부분이 잘 이해가 안 되긴 함
+}

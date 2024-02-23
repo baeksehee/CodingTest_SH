@@ -93,3 +93,88 @@ function solution(name) {
 //  이해가 안 감
 //  var을 사용해서 지역변수를 밖에서도 사용함 ㅎ0ㅎ
 //  알고리즘 세계란 어렵다
+function solution(name) {
+  let answer = 0;
+  let temp = [];
+  //  여기까지는 이해하겠음
+  for (let i = 0; i < name.length; i++) {
+    temp.push("A");
+    // 영문 대문자 => 65~90
+    let diff = name[i].charCodeAt() - temp[i].charCodeAt();
+    answer += diff > 13 ? 26 - diff : diff;
+  }
+
+  let minMove = name.length - 1;
+  for (let i = 1; i < name.length; i++) {
+    if (name[i] === "A") {
+      for (var j = i + 1; j < name.length; j++) {
+        if (name[j] != "A") break;
+      }
+      const left = i - 1;
+      const right = name.length - j;
+      minMove = Math.min(
+        minMove,
+        left > right ? left + right * 2 : left * 2 + right
+      );
+      i = j;
+    }
+  }
+  return answer + minMove;
+}
+
+//  참고
+//  알고리즘_JS/프로그래머스_Level2
+//  [프로그래머스 JavaScript] 조이스틱
+//  출처: https://ghost4551.tistory.com/113 [프론트엔드 개발자의 기록 공간:티스토리]
+//  왜 틀렸지.. 분석해보겠습니다.
+function solution(name) {
+  let answer = 0;
+  let ud = 0;
+  //  가로 이동 방향 최댓값
+  let lr = name.length - 1;
+  name = name.split("");
+
+  name.forEach((e, i) => {
+    e = e.charCodeAt();
+
+    ud += Math.min(e - "A".charCodeAt(), "Z".charCodeAt() - e);
+
+    let index = i;
+
+    while (name.length - 1 >= index && name[index] === "A") index++;
+
+    lr = Math.min(lr, i * 2 + name.length - index);
+  });
+
+  answer = ud + lr;
+  return answer;
+}
+
+// 더 참고해서 고친 코드
+function solution(name) {
+  let answer = 0;
+  let ud = 0;
+  //  가로 이동 방향 최댓값
+  let lr = name.length - 1;
+
+  // name = name.split("");
+
+  [...name].forEach((e, i) => {
+    e = e.charCodeAt();
+
+    ud += Math.min(e - "A".charCodeAt(), "Z".charCodeAt() - e + 1);
+
+    let index = i + 1;
+
+    while (name.length > index && name[index] === "A") index++;
+
+    lr = Math.min(
+      lr,
+      i * 2 + name.length - index,
+      i + 2 * (name.length - index)
+    );
+  });
+
+  answer = ud + lr;
+  return answer;
+}

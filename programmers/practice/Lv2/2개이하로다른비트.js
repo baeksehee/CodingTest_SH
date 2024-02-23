@@ -54,3 +54,33 @@ function solution(numbers) {
     }
   });
 }
+
+//  복습 코드
+//  ❌ -> ⭕
+//  짝수의 패턴은 알았지만 홀수의 패턴을 .. 찾지 .. 기억하지 못함
+//  홀수 맨 뒤에서부터 0을 찾아야 최소이면서 비트가 1~2개 다른 숫자를 찾을 수 있었음
+//  고친 코드의 아쉬운점 시간 복잡도
+function solution(numbers) {
+  let answer = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    let num = numbers[i];
+
+    if (num % 2 == 0) {
+      answer.push(num + 1);
+      continue;
+    } else {
+      let n = num.toString(2);
+      n = "0" + n;
+      //  이 부분!
+      n = n.split("").reverse();
+      let index = n.indexOf("0");
+      n[index - 1] = "0";
+      n[index] = "1";
+      n = n.reverse().join("");
+      answer.push(parseInt(n, 2));
+    }
+  }
+
+  return answer;
+}

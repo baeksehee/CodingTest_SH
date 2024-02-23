@@ -229,3 +229,77 @@ function solution(maps) {
 
   return -1;
 }
+
+function solution(maps) {
+  let goalY = maps[0].length - 1;
+  let goalX = maps.length - 1;
+
+  //     let answer = 0;
+  //     let me = [0, 0]
+  let dx = [-1, 1, 0, 0];
+  let dy = [0, 0, -1, 1];
+
+  let queue = [[0, 0, 1]];
+
+  while (queue.length > 0) {
+    let [x, y, l] = queue.shift();
+    // console.log(x, y, 1);
+
+    // if(x === goalX && y === goalY) return l;
+
+    for (let i = 0; i < dx.length; i++) {
+      let newX = x + dx[i];
+      let newY = y + dy[i];
+
+      if (newX === goalX && newY === goalY) return ++l;
+      if (
+        newX <= goalX &&
+        newX >= 0 &&
+        newY <= goalY &&
+        newY >= 0 &&
+        maps[newX][newY] === 1
+      ) {
+        maps[x][y] = 0;
+
+        queue.push([newX, newY, l + 1]);
+      }
+    }
+  }
+
+  console.log(queue);
+
+  return -1;
+}
+
+//   복복복습
+//   ❌ 너무 헷갈린다
+function solution(maps) {
+  let goalX = maps[0].length - 1; // x는 col
+  let goalY = maps.length - 1; // y는 row
+  let queue = [[0, 0, 1]];
+  maps[0][0] = 0; // 첫 자리는 방문한 것을 표시
+  let dx = [-1, 1, 0, 0];
+  let dy = [0, 0, -1, 1];
+
+  while (queue.length) {
+    let [y, x, l] = queue.shift();
+
+    for (let i = 0; i < dx.length; i++) {
+      let newX = x + dx[i];
+      let newY = y + dy[i];
+      if (newX === goalX && newY === goalY) return ++l; // newY, newX 기준으로 해야 빠르게 결과 도출
+
+      if (
+        newX <= goalX &&
+        newX >= 0 &&
+        newY <= goalY &&
+        newY >= 0 &&
+        maps[newY][newX] === 1
+      ) {
+        queue.push([newY, newX, l + 1]);
+        maps[newY][newX] = 0; // newX, newY 기준으로 방문 표시..
+      }
+    }
+  }
+  return -1;
+}

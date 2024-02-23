@@ -85,3 +85,21 @@ function solution(order) {
 // stack.pop() [1,2] order[2] = 1
 // 5) stack: [1,2,3] order[2] = 1
 // 끝
+
+//  복습
+//  ❌`
+//  이제 완변하게 이해한 듯
+function solution(order) {
+  let answer = 0;
+  let stack = [];
+
+  for (let i = 1; i < order.length + 1; i++) {
+    stack.push(i);
+    while (stack.length > 0 && stack[stack.length - 1] === order[answer]) {
+      stack.pop();
+      answer++;
+    }
+  }
+
+  return answer;
+}

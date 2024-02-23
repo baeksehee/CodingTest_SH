@@ -103,3 +103,60 @@ function solution(n, computers) {
 
   return answer;
 }
+
+//  복습 코드
+function solution(n, computers) {
+  let answer = 0;
+  let line = new Array(n).fill().map((e) => []);
+  let visited = new Array(n).fill(false);
+
+  computers.forEach((e, index) => {
+    for (let i = 0; i < e.length; i++) {
+      if (i !== index && e[i] === 1) line[index].push(i);
+    }
+  });
+
+  function dfs(node) {
+    if (visited[node] === true) return;
+    if (visited[node] === false) return answer++;
+
+    visited[node] = true;
+
+    line[node].forEach((l) => {
+      dfs(l);
+    });
+  }
+
+  visited[0] = true;
+
+  for (let i = 0; i < n; i++) {
+    dfs(i);
+  }
+
+  return answer;
+}
+
+//  복복습
+function solution(n, computers) {
+  let answer = 0;
+  let visited = new Array(n).fill(false);
+
+  function dfs(node, visited, computers) {
+    visited[node] = true;
+
+    for (let i = 0; i < computers[node].length; i++) {
+      if (!visited[i] && computers[node][i]) {
+        dfs(i, visited, computers);
+      }
+    }
+  }
+
+  for (let i = 0; i < n; i++) {
+    if (!visited[i]) {
+      dfs(i, visited, computers);
+      answer++;
+    }
+  }
+
+  return answer;
+}

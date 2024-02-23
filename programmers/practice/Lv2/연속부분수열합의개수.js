@@ -111,3 +111,72 @@ function solution(elements) {
 
   return answer;
 }
+
+//  복습
+
+//  연속된 부분 수열의 합
+//  11시 14분
+//  시간초과임
+
+function solution(sequence, k) {
+  let answer = [];
+
+  sequence.forEach((s, i) => {
+    let num = s;
+    if (s === k) {
+      answer = [i, i];
+    }
+    for (let j = i + 1; j < sequence.length; j++) {
+      num += sequence[j];
+      if (num === k) {
+        if (answer.length === 0) answer.push(i, j);
+        else {
+          if (j - i === answer[1] - answer[0]) break;
+          else if (j - i < answer[1] - answer[0]) {
+            answer.pop();
+            answer.pop();
+            answer.push(i, j);
+          }
+        }
+        break;
+      } else if (num > k) break;
+    }
+  });
+  return answer;
+}
+
+//  JAVASCRIPT, PROGRAMMERS, LV2
+//  [프로그래머스] 연속된 부분 수열의 합 - JavaScript
+//  Apr 20, 2023 LeeJam
+//  투 포인터 알고리즘!
+function solution(sequence, k) {
+  let answer = [0, 1000000];
+  let left = 0;
+  let right = 0;
+  let sum = sequence[0];
+
+  while (right < sequence.length) {
+    if (sum === k) {
+      if (answer[1] - answer[0] > right - left) {
+        // left , right 인덱스 사이의 거리가 적을시 answer 업데이트
+        answer[0] = left; //  그리고 이미 가장 사이의 거리가 적은 left, right로 업데이트 되어있으면 x
+        answer[1] = right;
+      }
+      //  left right를 하나씩 올려주는 이유는!
+      //  이미 sum 값이 k 이므로
+      //  right만 올리면 sum > k
+      //  left만 올리면 sum < k
+      //  둘다 올려주는 걸로
+      sum -= sequence[left++];
+      sum += sequence[++right];
+    } else if (sum > k) {
+      //  sum이 k 보다 클 때
+      sum -= sequence[left++];
+    } else if (sum < k) {
+      //  sum이 k 보다 작을 때
+      sum += sequence[++right];
+    }
+  }
+
+  return answer;
+}
