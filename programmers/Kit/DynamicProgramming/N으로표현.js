@@ -39,3 +39,33 @@ function solution(N, number) {
 
   return answer;
 }
+
+//  정답코드
+//  참고
+//  [JS] N으로 표현: 동적 계획법 그 험난한 여정
+//  2022. 7. 31. 18:08ㆍ알고리즘/programmers
+function solution(N, number) {
+  let memo = new Array(9).fill().map((e) => new Set());
+  if (N === number) return 1;
+  memo.forEach((e, i) => {
+    if (i !== 0) e.add(Number(String(N).repeat(i)));
+  });
+
+  for (let i = 1; i < 9; i++) {
+    for (let j = 1; j < i; j++) {
+      for (let origin of memo[j]) {
+        //  이부분 주의
+        for (let value of memo[i - j]) {
+          // 이 부분 주의
+          memo[i].add(origin + value);
+          memo[i].add(origin - value);
+          memo[i].add(Math.floor(origin / value)); // 사칙연산 주의..
+          memo[i].add(origin * value);
+        }
+      }
+    }
+    if (memo[i].has(number)) return i;
+  }
+
+  return -1;
+}
