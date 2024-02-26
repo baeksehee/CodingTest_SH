@@ -94,3 +94,43 @@ function solution(n) {
 
   return answer.flat();
 }
+
+//  참고해서 정답 코드
+function solution(n) {
+  let answer = Array.from({ length: n }, (e, i) => new Array(i + 1).fill(0));
+  let row = -1;
+  let cul = 0;
+  let num = 0;
+
+  while (n > 0) {
+    //  위에서 아래로 왼쪽
+    for (let i = 0; i < n; i++) {
+      row++;
+      num++;
+      answer[row][cul] = num;
+    }
+
+    //  왼쪽에서 오른쪽
+    for (let i = 0; i < n - 1; i++) {
+      cul++;
+      num++;
+      answer[row][cul] = num;
+    }
+
+    for (let i = 0; i < n - 2; i++) {
+      row--;
+      cul--;
+      num++;
+      answer[row][cul] = num;
+    }
+
+    n -= 3;
+    //  이제 i의 끝 조건을 깨달았다!
+    //  왼쪽 라인으로 내려올 때는 길이기가 n 만큼이고
+    //  밑에 왼쪽에서 오른쪽으로 이동할 때는 이미 왼쪽에는 채워졌으니깐 n - 1만큼
+    //  오른쪽 밑에서 오른쪽으로 올라가는 것은 n - 2 만큼 왜냐하면 정상과 맨 아래가 이미 채워졌으니깐!
+    //  뿌듯뿌듯!
+  }
+
+  return answer.flat();
+}
