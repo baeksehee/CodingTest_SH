@@ -45,6 +45,65 @@
 
 > 최단 거리를 찾는 것이지 최단 경로를 구하기 위해서는 추가적으로 코드 필요
 
+### 최소힙 (코딩테스트지도 강의 자료)
+
+```js
+class MinHeap {
+  constructor() {
+    this.heap = [];
+  }
+
+  insert(value) {
+    this.heap.push(value);
+    this.heapifyUp(this.heap.length - 1);
+  }
+
+  heapifyUp(index) {
+    while (index > 0) {
+      const parentIndex = (index - 1) >> 0;
+      if (this.heap[parentIndex] <= this.heap[index]) break;
+      [this.heap[parentIndex], this.heap[index]] = [
+        this.heap[index],
+        this.heap[parentIndex],
+      ];
+      index = parentIndex;
+    }
+  }
+
+  remove() {
+    const min = this.heap[0];
+    const end = this.heap.pop();
+    if (this.heap.length > 0) {
+      this.heap[0] = end;
+      this.heapifyDown(0);
+    }
+    return min;
+  }
+
+  heapifyDown(index) {
+    while (index < this.heap.length) {
+      const left = (index << 1) + 1;
+      const right = (index << 1) + 2;
+      let smallest = index;
+      if (this.heap[left] && this.heap[left] < this.heap[smallest])
+        smallest = left;
+      if (this.heap[right] && this.heap[right] < this.heap[smallest])
+        smallest = right;
+      if (smallest === index) break;
+      [this.heap[index], this.heap[smallest]] = [
+        this.heap[smallest],
+        this.heap[index],
+      ];
+      index = smallest;
+    }
+  }
+
+  ifEmpty() {
+    return this.heap.length === 0;
+  }
+}
+```
+
 ### 예제 코드
 
 순차 탐색
