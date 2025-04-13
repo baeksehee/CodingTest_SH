@@ -1,13 +1,13 @@
-// 절대값 힙
+// 절댓값 힙
 // 시간: 30분
 // 결과: 메모리 초과
 // 내 코드 1
 
 let fs = require("fs");
-let lines = fs.readFileSync("절대값.txt").toString().split("\n").map(Number);
+let lines = fs.readFileSync("절댓값.txt").toString().split("\n").map(Number);
 
 let originArray = []; // 숫자 그대로인 정수 배열
-let absArray = []; // 절대값으로 변환해 넣은은 배열
+let absArray = []; // 절댓값으로 변환해 넣은은 배열
 
 for (let i = 1; i <= lines[0]; i++) {
   if (lines[i] == 0) {
@@ -16,18 +16,18 @@ for (let i = 1; i <= lines[0]; i++) {
       // 0을 만나고 배열의 길이가 0일 때 0을 출력력
       console.log(0);
     } else {
-      let findingMin = Math.min(...absArray); // 절대값 배열에서 최소값을 찾는다.
-      let findIndex = absArray.indexOf(findingMin); // 절대값 배열에서 최소값의 인덱스를 찾는다.
+      let findingMin = Math.min(...absArray); // 절댓값 배열에서 최소값을 찾는다.
+      let findIndex = absArray.indexOf(findingMin); // 절댓값 배열에서 최소값의 인덱스를 찾는다.
       console.log(originArray[findIndex]); // 정수 배열에서 최소값의 인덱스를 찾아서 출력한다.
       originArray = originArray // 정수 배열에서 최소값을 삭제한다. slice() 사용
         .slice(0, findIndex)
         .concat(originArray.slice(findIndex + 1));
-      absArray = absArray // 절대값 배열에서 최소값을 삭제한다. slice() 사용
+      absArray = absArray // 절댓값 배열에서 최소값을 삭제한다. slice() 사용
         .slice(0, findIndex)
         .concat(absArray.slice(findIndex + 1));
     }
   } else {
-    // 절대값 배열과 정수 배열에 값을 넣는다.
+    // 절댓값 배열과 정수 배열에 값을 넣는다.
     originArray.unshift(lines[i]);
     absArray.unshift(Math.abs(lines[i]));
   }
@@ -38,7 +38,7 @@ for (let i = 1; i <= lines[0]; i++) {
 // 코딩테스트 지도 강의 자료의 최소힙 코드를 참고했다.
 
 let fs = require("fs");
-let lines = fs.readFileSync("절대값.txt").toString().split("\n").map(Number);
+let lines = fs.readFileSync("절댓값.txt").toString().split("\n").map(Number);
 
 class MinHeap {
   constructor() {
